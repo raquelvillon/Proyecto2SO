@@ -50,11 +50,9 @@ public class Principal {
                             String linea;
                             int aum=0;
                             while((linea=br.readLine())!=null){
-                               lru.put(aum, linea);
-                               aum++;
+                               lru.put(linea,"aum");
                             }
-
-                            System.out.println((lru.getMiss()/lru.getTotalproccess())*100);
+                            System.out.println("% Miss Rate : "+((lru.getMiss()/lru.getTotalproccess())*100));
                          }catch(Exception e){
                             System.out.println(e);
                          }finally{

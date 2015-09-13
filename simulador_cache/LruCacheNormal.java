@@ -27,7 +27,7 @@ public class LruCacheNormal<KEY, VALUE> implements LruCache<KEY,VALUE> {
             queue.removeFirstOccurrence ( key );
         }else{
             miss++;
-            System.out.println(miss);
+            //System.out.println(miss);
         }
         queue.addFirst ( key );
 
