@@ -9,7 +9,8 @@ public class LruCacheNormal<KEY, VALUE> implements LruCache<KEY,VALUE> {
     Map<KEY, VALUE> map = new HashMap<KEY, VALUE> ();
     Deque<KEY> queue = new LinkedList<KEY> ();
     final int limit;
-
+    public float miss=0;
+    public float totalproccess=0;
 
     public LruCacheNormal ( int limit ) {
         this.limit = limit;
@@ -17,13 +18,16 @@ public class LruCacheNormal<KEY, VALUE> implements LruCache<KEY,VALUE> {
 
     public void put ( KEY key, VALUE value ) {
         VALUE oldValue = map.put ( key, value );
-
+        totalproccess++;
         /*If there was already an object under this key,
          then remove it before adding to queue
          Frequently used keys will be at the top so the search could be fast.
          */
         if ( oldValue != null ) {
             queue.removeFirstOccurrence ( key );
+        }else{
+            miss++;
+            System.out.println(miss);
         }
         queue.addFirst ( key );
 
@@ -34,6 +38,13 @@ public class LruCacheNormal<KEY, VALUE> implements LruCache<KEY,VALUE> {
 
     }
 
+    public float getMiss(){
+        return miss;
+    }
+
+    public float getTotalproccess(){
+        return totalproccess;
+    }
 
     public VALUE get ( KEY key ) {
 

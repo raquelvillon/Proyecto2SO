@@ -48,10 +48,13 @@ public class Principal {
                          try{
                             LruCacheNormal lru = new LruCacheNormal(cantidad);
                             String linea;
+                            int aum=0;
                             while((linea=br.readLine())!=null){
-                               lru.put(cantidad, linea);
-                               System.out.println(lru);
+                               lru.put(aum, linea);
+                               aum++;
                             }
+
+                            System.out.println((lru.getMiss()/lru.getTotalproccess())*100);
                          }catch(Exception e){
                             System.out.println(e);
                          }finally{
